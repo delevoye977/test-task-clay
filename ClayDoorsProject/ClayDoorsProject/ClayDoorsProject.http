@@ -1,0 +1,6 @@
+@ClayDoorsProject_HostAddress = http://localhost:5291
+
+GET {{ClayDoorsProject_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
