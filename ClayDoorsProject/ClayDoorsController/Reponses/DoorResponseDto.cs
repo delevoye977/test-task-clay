@@ -1,6 +1,6 @@
 ﻿using ClayDoorsModel.Models;
 
-namespace ClayDoorsProject.Dtos
+namespace ClayDoorsController.Reponses
 {
     public class DoorResponseDto : IDoor
     {

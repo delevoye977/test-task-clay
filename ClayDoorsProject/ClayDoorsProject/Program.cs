@@ -40,4 +40,5 @@ void AddRepositories()
 void AddServices()
 {
     builder.Services.AddTransient<IDoorsReadService, DoorsReadService>();
+    builder.Services.AddTransient<IDoorsWriteService, DoorsWriteService>();
 }
