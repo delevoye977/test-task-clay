@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClayDoorsProject", "ClayDoorsProject\ClayDoorsProject.csproj", "{3478E68B-9FA6-481F-930F-F70481CA3CD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClayDoorsMain", "ClayDoorsProject\ClayDoorsMain.csproj", "{3478E68B-9FA6-481F-930F-F70481CA3CD4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{486FB052-6108-40DD-96A0-FAD6EA88B9A2}"
 	ProjectSection(SolutionItems) = preProject
 		CreateDatabase.sql = CreateDatabase.sql
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClayDoorsModel", "ClayDoorsModel\ClayDoorsModel.csproj", "{EF37E54C-03C0-4A5E-BFA3-8FD901D6F0FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClayDoorsDatabase", "ClayDoorsDatabase\ClayDoorsDatabase.csproj", "{16F8D71A-E6B0-48DD-8244-FF43F7E8AC98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClayDoorsController", "ClayDoorsController\ClayDoorsController.csproj", "{04C454B7-7130-4072-88B7-AA4EB986788F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +26,18 @@ Global
 		{3478E68B-9FA6-481F-930F-F70481CA3CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3478E68B-9FA6-481F-930F-F70481CA3CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3478E68B-9FA6-481F-930F-F70481CA3CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF37E54C-03C0-4A5E-BFA3-8FD901D6F0FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF37E54C-03C0-4A5E-BFA3-8FD901D6F0FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF37E54C-03C0-4A5E-BFA3-8FD901D6F0FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF37E54C-03C0-4A5E-BFA3-8FD901D6F0FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F8D71A-E6B0-48DD-8244-FF43F7E8AC98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F8D71A-E6B0-48DD-8244-FF43F7E8AC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F8D71A-E6B0-48DD-8244-FF43F7E8AC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F8D71A-E6B0-48DD-8244-FF43F7E8AC98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C454B7-7130-4072-88B7-AA4EB986788F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C454B7-7130-4072-88B7-AA4EB986788F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C454B7-7130-4072-88B7-AA4EB986788F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C454B7-7130-4072-88B7-AA4EB986788F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

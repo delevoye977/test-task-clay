@@ -1,6 +1,6 @@
-﻿namespace ClayDoorsProject.Models
+﻿namespace ClayDoorsModel.Models
 {
-    public class Door
+    public class Door : IDoor
     {
         public Door(int id, string location, string description)
         {

@@ -1,5 +1,5 @@
-using ClayDoorsProject.Repositories;
-using ClayDoorsProject.Services;
+using ClayDoorsDatabase.Repositories;
+using ClayDoorsModel.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

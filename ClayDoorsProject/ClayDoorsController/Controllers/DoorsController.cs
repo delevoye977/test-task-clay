@@ -1,6 +1,7 @@
 ﻿using ClayDoorsProject.Dtos;
-using ClayDoorsProject.Services;
+using ClayDoorsModel.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace ClayDoorsProject.Controllers
 {
