@@ -2,11 +2,11 @@
 
 namespace ClayDoorsProject.Dtos
 {
-    public class DoorResponseDto
+    public class DoorResponseDto : IDoor
     {
-        public int Id { get; set; }
-        public string Location { get; set; }
-        public string Description { get; set; }
+        public int Id { get; }
+        public string Location { get; }
+        public string Description { get; }
 
         public DoorResponseDto(IDoor d)
         {
