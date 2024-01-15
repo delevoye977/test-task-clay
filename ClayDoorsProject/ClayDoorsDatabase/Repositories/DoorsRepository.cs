@@ -20,7 +20,9 @@ namespace ClayDoorsDatabase.Repositories
 
         public IDoor? GetDoor(int doorId)
         {
-            return ctx.Doors.FirstOrDefault(d => d.Id == doorId);
+            var entity = ctx.Doors.FirstOrDefault(d => d.Id == doorId);
+            if (entity == null) return null;
+            return new Door(entity.Id, entity.Location, entity.Description);
         }
     }
 }

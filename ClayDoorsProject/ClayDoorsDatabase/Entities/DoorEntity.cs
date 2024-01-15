@@ -1,11 +1,10 @@
-﻿using ClayDoorsModel.Models;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ClayDoorsProject.Entities
+namespace ClayDoorsDatabase.Entities
 {
 
     [Table("door")]
-    public class DoorEntity : IDoor
+    public class DoorEntity
     {
         [Column("door_id")]
         public int Id { get; set; }

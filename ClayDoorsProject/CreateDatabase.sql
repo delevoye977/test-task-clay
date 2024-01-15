@@ -22,3 +22,5 @@ COMMENT='Users of the doors'
 
 INSERT INTO door (location, description) VALUES ('front door', 'door to access the building'), ('storage door', 'door of the storage room');
 INSERT INTO door_user (username) VALUES ('Big boss'), ('Floor boss'), ('Standard employee'), ('Intern employee'), ('Senior employee');
+
+SELECT * FROM door_user;

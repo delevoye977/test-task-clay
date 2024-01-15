@@ -1,4 +1,4 @@
-﻿using ClayDoorsProject.Entities;
+﻿using ClayDoorsDatabase.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -17,6 +17,7 @@ namespace ClayDoorsDatabase.Repositories
         }
 
         public DbSet<DoorEntity> Doors { get; set; }
+        public DbSet<DoorUserEntity> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

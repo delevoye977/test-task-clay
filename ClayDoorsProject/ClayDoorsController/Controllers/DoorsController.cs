@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ClayDoorsController.Reponses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ClayDoorsProject.Controllers
 {
     /// <summary>
     /// Controller for the doors.
     /// </summary>
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DoorsController : ControllerBase
