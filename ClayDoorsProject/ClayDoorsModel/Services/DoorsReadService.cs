@@ -1,7 +1,6 @@
-﻿using ClayDoorsProject.Models;
-using ClayDoorsProject.Repositories;
+﻿using ClayDoorsModel.Models;
 
-namespace ClayDoorsProject.Services
+namespace ClayDoorsModel.Services
 {
     public class DoorsReadService : IDoorsReadService
     {
@@ -11,8 +10,8 @@ namespace ClayDoorsProject.Services
         {
             this.doorsRepository = doorsRepository;
         }
-
-        public async Task<IEnumerable<Door>> GetDoors()
+        
+        public async Task<IEnumerable<IDoor>> GetDoors() //Wishing covariant return types makes it to C# soon
         {
             return await doorsRepository.GetAllDoors();
         }

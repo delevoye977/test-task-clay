@@ -1,4 +1,4 @@
-﻿using ClayDoorsProject.Models;
+﻿using ClayDoorsModel.Models;
 
 namespace ClayDoorsProject.Dtos
 {
@@ -8,7 +8,7 @@ namespace ClayDoorsProject.Dtos
         public string Location { get; set; }
         public string Description { get; set; }
 
-        public DoorResponseDto(Door d)
+        public DoorResponseDto(IDoor d)
         {
             Id = d.Id;
             Location = d.Location;

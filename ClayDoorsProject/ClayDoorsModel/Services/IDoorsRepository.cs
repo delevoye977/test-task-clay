@@ -1,6 +1,6 @@
-﻿using ClayDoorsProject.Models;
+﻿using ClayDoorsModel.Models;
 
-namespace ClayDoorsProject.Repositories
+namespace ClayDoorsModel.Services
 {
     /// <summary>
     /// Repository to access the data.
@@ -11,6 +11,6 @@ namespace ClayDoorsProject.Repositories
         /// Returns the list of all doors.
         /// </summary>
         /// <returns>The list of all doors.</returns>
-        Task<IEnumerable<Door>> GetAllDoors();
+        Task<IEnumerable<IDoor>> GetAllDoors();
     }
 }

@@ -1,6 +1,6 @@
-﻿using ClayDoorsProject.Models;
+﻿using ClayDoorsModel.Models;
 
-namespace ClayDoorsProject.Services
+namespace ClayDoorsModel.Services
 {
     /// <summary>
     /// Service for the read actions for doors.
@@ -11,6 +11,6 @@ namespace ClayDoorsProject.Services
         /// Gets the list of doors.
         /// </summary>
         /// <returns>The list of all doors.</returns>
-        public Task<IEnumerable<Door>> GetDoors();
+        public Task<IEnumerable<IDoor>> GetDoors();
     }
 }

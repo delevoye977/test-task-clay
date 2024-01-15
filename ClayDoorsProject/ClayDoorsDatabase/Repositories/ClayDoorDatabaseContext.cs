@@ -1,7 +1,8 @@
 ﻿using ClayDoorsProject.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
-namespace ClayDoorsProject.Repositories
+namespace ClayDoorsDatabase.Repositories
 {
     /// <summary>
     /// Context to access the claydoor database.
