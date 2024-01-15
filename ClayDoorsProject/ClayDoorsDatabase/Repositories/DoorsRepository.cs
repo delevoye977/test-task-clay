@@ -14,8 +14,13 @@ namespace ClayDoorsDatabase.Repositories
 
         public async Task<IEnumerable<IDoor>> GetAllDoors()
         {
-            //return await Task.Run(() => new List<Door>() { new Door(1, "test", "bidon")});
-            return ctx.Doors.Select(d => new Door(d.Id, d.Location, d.Description));
+            return await Task.Run(
+                () => ctx.Doors.Select(d => new Door(d.Id, d.Location, d.Description)));
+        }
+
+        public IDoor? GetDoor(int doorId)
+        {
+            return ctx.Doors.FirstOrDefault(d => d.Id == doorId);
         }
     }
 }
