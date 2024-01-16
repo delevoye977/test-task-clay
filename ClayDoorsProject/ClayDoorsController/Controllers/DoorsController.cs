@@ -47,7 +47,8 @@ namespace ClayDoorsProject.Controllers
         [HttpPost("/{doorId}/unlock")]
         public async Task<DoorUnlockResponseDto> UnlockDoor([FromRoute] int doorId)
         {
-            return new DoorUnlockResponseDto(await doorWriteService.UnlockDoor(doorId));
+            var username = User.Identity?.Name;
+            return new DoorUnlockResponseDto(await doorWriteService.UnlockDoor(doorId, username));
         }
     }
 }

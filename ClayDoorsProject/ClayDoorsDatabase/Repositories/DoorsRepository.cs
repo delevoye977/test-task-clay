@@ -1,5 +1,6 @@
 ﻿using ClayDoorsModel.Models;
 using ClayDoorsModel.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClayDoorsDatabase.Repositories
 {
@@ -15,14 +16,17 @@ namespace ClayDoorsDatabase.Repositories
         public async Task<IEnumerable<IDoor>> GetAllDoors()
         {
             return await Task.Run(
-                () => ctx.Doors.Select(d => new Door(d.Id, d.Location, d.Description)));
+                () => ctx.Doors.Include(e => e.Permissions).Select(
+                    d => d.MapToModel())
+                .ToList());
         }
 
         public IDoor? GetDoor(int doorId)
         {
-            var entity = ctx.Doors.FirstOrDefault(d => d.Id == doorId);
+            var entity = ctx.Doors.Include(e => e.Permissions)
+                .FirstOrDefault(d => d.Id == doorId);
             if (entity == null) return null;
-            return new Door(entity.Id, entity.Location, entity.Description);
+            return entity.MapToModel();
         }
     }
 }

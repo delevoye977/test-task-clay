@@ -2,9 +2,12 @@ using ClayDoorsDatabase.Repositories;
 using ClayDoorsMain.Swagger;
 using ClayDoorsModel.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +26,7 @@ builder.Services
             ValidateIssuer = true,
             ValidateIssuerSigningKey = true,
             ValidateLifetime = true,
+            NameClaimType = JwtRegisteredClaimNames.Name
         };
     });
 

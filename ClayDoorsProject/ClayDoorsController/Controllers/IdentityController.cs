@@ -1,6 +1,5 @@
 ﻿using ClayDoorsController.Requests;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -36,6 +35,11 @@ namespace ClayDoorsController.Controllers
             this.doorUserReadService = doorUserReadService;
         }
 
+        /// <summary>
+        /// Creates a token to use for authentication.
+        /// </summary>
+        /// <param name="request">The reauired parameters for the authentication.</param>
+        /// <returns>The generated token if the authentication succeeded.</returns>
         [HttpPost("token")]
         public IActionResult CreateToken([FromBody]CreateTokenRequest request)
         {

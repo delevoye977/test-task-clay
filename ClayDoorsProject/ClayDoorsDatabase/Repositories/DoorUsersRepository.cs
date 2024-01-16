@@ -1,5 +1,6 @@
 ﻿using ClayDoorsModel.Models;
 using ClayDoorsModel.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClayDoorsDatabase.Repositories
 {
@@ -14,9 +15,11 @@ namespace ClayDoorsDatabase.Repositories
 
         public IDoorUser? GetUser(string username)
         {
-            var entity = ctx.Users.FirstOrDefault(u => string.Equals(u.Username, username));
+            var entity = ctx.Users
+                .Include(e => e.Roles).ThenInclude(e => e.Permissions)
+                .FirstOrDefault(u => string.Equals(u.Username, username));
             if (entity == null) return null;
-            return new DoorUser(entity.Id, entity.Username);
+            return entity.MapToModel();
         }
     }
 }
