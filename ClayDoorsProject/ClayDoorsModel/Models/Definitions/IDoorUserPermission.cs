@@ -3,7 +3,7 @@
     /// <summary>
     /// Describes the permissions for doors.
     /// </summary>
-    public interface IDoorPermission
+    public interface IDoorUserPermission
     {
         int Id { get; }
 

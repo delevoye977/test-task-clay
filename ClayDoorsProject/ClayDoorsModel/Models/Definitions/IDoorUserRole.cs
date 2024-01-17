@@ -12,6 +12,6 @@
         /// <summary>
         /// List of the permissions this role grants.
         /// </summary>
-        IEnumerable<IDoorPermission> Permissions { get; }
+        IEnumerable<IDoorUserPermission> Permissions { get; }
     }
 }

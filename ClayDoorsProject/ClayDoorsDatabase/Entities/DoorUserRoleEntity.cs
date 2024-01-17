@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ClayDoorsDatabase.Entities
 {
     [Table("role")]
-    internal class UserRoleEntity
+    internal class DoorUserRoleEntity
     {
         [Column("role_id")]
         public int Id { get; set; }
@@ -16,7 +16,7 @@ namespace ClayDoorsDatabase.Entities
 
         public string Description { get; set; }
 
-        public IEnumerable<DoorPermissionEntity> Permissions { get; set; }
+        public IEnumerable<DoorUserPermissionEntity> Permissions { get; set; }
 
         internal IDoorUserRole MapToModel()
         {
@@ -24,7 +24,7 @@ namespace ClayDoorsDatabase.Entities
                 Id,
                 Name,
                 Description,
-                Permissions?.Select(p => p.MapToModel()).ToList() ?? Enumerable.Empty<IDoorPermission>()
+                Permissions?.Select(p => p.MapToModel()).ToList() ?? Enumerable.Empty<IDoorUserPermission>()
                 );
         }
     }

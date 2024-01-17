@@ -18,7 +18,7 @@ namespace ClayDoorsModel.Models
             Roles = roles;
         }
 
-        public bool HasPermission(IDoorPermission permission)
+        public bool HasPermission(IDoorUserPermission permission)
         {
             return Roles.Any(
                 r => r.Permissions.Any(

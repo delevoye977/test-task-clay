@@ -3,7 +3,7 @@ using ClayDoorsModel.Models.Definitions;
 
 namespace ClayDoorsModel.Models
 {
-    public class DoorPermission : IDoorPermission
+    public class DoorUserPermission : IDoorUserPermission
     {
         public int Id { get; set; }
 
@@ -11,7 +11,7 @@ namespace ClayDoorsModel.Models
 
         public string Description { get; set; }
 
-        public DoorPermission(int id, string name, string description)
+        public DoorUserPermission(int id, string name, string description)
         {
             this.Id = id;
             this.Name = name;

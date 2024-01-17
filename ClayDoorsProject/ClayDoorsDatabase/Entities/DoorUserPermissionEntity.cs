@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ClayDoorsDatabase.Entities
 {
     [Table("permission")]
-    internal class DoorPermissionEntity
+    internal class DoorUserPermissionEntity
     {
         [Column("permission_id")]
         public int Id { get; set; }
@@ -15,9 +15,9 @@ namespace ClayDoorsDatabase.Entities
 
         public string Description { get; set; }
 
-        internal IDoorPermission MapToModel()
+        internal IDoorUserPermission MapToModel()
         {
-            return new DoorPermission(
+            return new DoorUserPermission(
                 Id, 
                 Name, 
                 Description

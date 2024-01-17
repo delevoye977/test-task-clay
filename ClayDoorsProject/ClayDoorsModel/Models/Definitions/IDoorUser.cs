@@ -19,6 +19,6 @@
         /// </summary>
         /// <param name="permission">Permission to check.</param>
         /// <returns>True if the user has the permission, false otherwise.</returns>
-        bool HasPermission(IDoorPermission permission);
+        bool HasPermission(IDoorUserPermission permission);
     }
 }

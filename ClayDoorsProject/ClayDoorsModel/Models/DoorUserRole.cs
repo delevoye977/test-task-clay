@@ -11,9 +11,9 @@ namespace ClayDoorsModel.Models
 
         public string Description { get; set; }
 
-        public IEnumerable<IDoorPermission> Permissions { get; set;}
+        public IEnumerable<IDoorUserPermission> Permissions { get; set;}
 
-        public DoorUserRole(int id, string name, string description, IEnumerable<IDoorPermission> permissions)
+        public DoorUserRole(int id, string name, string description, IEnumerable<IDoorUserPermission> permissions)
         {
             Id = id;
             Name = name;

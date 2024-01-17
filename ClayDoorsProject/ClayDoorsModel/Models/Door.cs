@@ -5,7 +5,7 @@ namespace ClayDoorsModel.Models
 {
     public class Door : IDoor
     {
-        public Door(int id, string location, string description, IEnumerable<IDoorPermission> permissions)
+        public Door(int id, string location, string description, IEnumerable<IDoorUserPermission> permissions)
         {
             Id = id;
             Location = location;
@@ -19,7 +19,7 @@ namespace ClayDoorsModel.Models
 
         public string Description { get; set; }
 
-        public IEnumerable<IDoorPermission> RequiredPermissions { get; set; }
+        public IEnumerable<IDoorUserPermission> RequiredPermissions { get; set; }
 
         public bool CanBeUnlockedBy(IDoorUser user)
         {

@@ -14,7 +14,7 @@
         /// <summary>
         /// List of the permissions required to open the door.
         /// </summary>
-        public IEnumerable<IDoorPermission> RequiredPermissions { get; }
+        public IEnumerable<IDoorUserPermission> RequiredPermissions { get; }
 
         /// <summary>
         /// Tells if the door can be unlocked by the given user.

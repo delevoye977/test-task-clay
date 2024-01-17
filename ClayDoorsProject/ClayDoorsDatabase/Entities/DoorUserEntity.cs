@@ -12,7 +12,7 @@ namespace ClayDoorsDatabase.Entities
 
         public required string Username {  get; set; }
 
-        public required IEnumerable<UserRoleEntity> Roles { get; set; }
+        public required IEnumerable<DoorUserRoleEntity> Roles { get; set; }
 
         internal IDoorUser MapToModel()
         {
