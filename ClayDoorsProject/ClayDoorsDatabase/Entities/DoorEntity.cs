@@ -15,7 +15,7 @@ namespace ClayDoorsDatabase.Entities
 
         public string Description { get; set; }
 
-        public IList<DoorPermissionEntity> Permissions { get; set; }
+        public IList<DoorUserPermissionEntity> Permissions { get; set; }
 
         internal IDoor MapToModel()
         {
@@ -23,7 +23,7 @@ namespace ClayDoorsDatabase.Entities
                 Id,
                 Location,
                 Description,
-                Permissions?.Select(p => p.MapToModel()).ToList() ?? Enumerable.Empty<IDoorPermission>()
+                Permissions?.Select(p => p.MapToModel()).ToList() ?? Enumerable.Empty<IDoorUserPermission>()
                 );
         }
     }

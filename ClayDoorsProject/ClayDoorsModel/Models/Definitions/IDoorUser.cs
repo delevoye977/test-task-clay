@@ -19,6 +19,13 @@
         /// </summary>
         /// <param name="permission">Permission to check.</param>
         /// <returns>True if the user has the permission, false otherwise.</returns>
-        bool HasPermission(IDoorPermission permission);
+        bool HasPermission(IDoorUserPermission permission);
+
+        /// <summary>
+        /// Checks if the user has the given permission.
+        /// </summary>
+        /// <param name="permissionName">Name of the permission to check.</param>
+        /// <returns>True if the user has the permission, false otherwise.</returns>
+        bool HasPermission(string? permissionName);
     }
 }

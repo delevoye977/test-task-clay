@@ -4,6 +4,7 @@ using ClayDoorsMain.Swagger;
 using ClayDoorsModel.Services;
 using ClayDoorsModel.Services.Definitions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -29,6 +30,13 @@ builder.Services
             NameClaimType = JwtRegisteredClaimNames.Name
         };
     });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(
+        "CanViewDoorLogs",
+        policy => policy.Requirements.Add(new HasPermissionRequirement("View doors logs")));
+});
 
 AddRepositories();
 
@@ -65,7 +73,7 @@ app.Run();
 
 void AddRepositories()
 {
-    builder.Services.AddDbContext<ClayDoorDatabaseContext>();
+    builder.Services.AddDbContext<ClayDoorDatabaseContext>(ServiceLifetime.Singleton);
     builder.Services.AddTransient<IDoorsRepository, DoorsRepository>();
     builder.Services.AddTransient<IDoorUsersRepository, DoorUsersRepository>();
 }
@@ -78,6 +86,7 @@ void AddServices()
 
 void AddMiddlewares()
 {
+    builder.Services.AddSingleton<IAuthorizationHandler, HasPermissionPolicyHandler>();
     builder.Services.AddExceptionHandler<LoggerExceptionHandler>();
     builder.Services.AddExceptionHandler<GeneralExceptionHandler>();
 }

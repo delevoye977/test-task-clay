@@ -33,7 +33,7 @@ namespace ClayDoorsDatabase.Repositories
                 .WithMany()
                 .UsingEntity<Dictionary<string, object>>(
                     "door_permission_link",
-                    j => j.HasOne<DoorPermissionEntity>().WithMany().HasForeignKey("permission_id").OnDelete(DeleteBehavior.NoAction),
+                    j => j.HasOne<DoorUserPermissionEntity>().WithMany().HasForeignKey("permission_id").OnDelete(DeleteBehavior.NoAction),
                     j => j.HasOne<DoorEntity>().WithMany().HasForeignKey("door_id").OnDelete(DeleteBehavior.NoAction)
                     );
 
@@ -42,17 +42,17 @@ namespace ClayDoorsDatabase.Repositories
                 .WithMany()
                 .UsingEntity<Dictionary<string, object>>(
                     "user_role_link",
-                    j => j.HasOne<UserRoleEntity>().WithMany().HasForeignKey("role_id").OnDelete(DeleteBehavior.NoAction),
+                    j => j.HasOne<DoorUserRoleEntity>().WithMany().HasForeignKey("role_id").OnDelete(DeleteBehavior.NoAction),
                     j => j.HasOne<DoorUserEntity>().WithMany().HasForeignKey("user_id").OnDelete(DeleteBehavior.NoAction)
                     );
 
-            modelBuilder.Entity<UserRoleEntity>()
+            modelBuilder.Entity<DoorUserRoleEntity>()
                 .HasMany(e => e.Permissions)
                 .WithMany()
                 .UsingEntity<Dictionary<string, object>>(
                     "role_permission_link",
-                    j => j.HasOne<DoorPermissionEntity>().WithMany().HasForeignKey("permission_id").OnDelete(DeleteBehavior.NoAction),
-                    j => j.HasOne<UserRoleEntity>().WithMany().HasForeignKey("role_id").OnDelete(DeleteBehavior.NoAction)
+                    j => j.HasOne<DoorUserPermissionEntity>().WithMany().HasForeignKey("permission_id").OnDelete(DeleteBehavior.NoAction),
+                    j => j.HasOne<DoorUserRoleEntity>().WithMany().HasForeignKey("role_id").OnDelete(DeleteBehavior.NoAction)
                 );
         }
     }

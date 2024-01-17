@@ -78,10 +78,26 @@ CREATE TABLE `door_unlock_log` (
 COMMENT ='Logs of attempts to unlock a door'
 ;
 
-INSERT INTO door (location, description) VALUES ('Front door', 'door to access the building'), ('Storage door', 'door of the storage room');
-INSERT INTO door_user (username) VALUES ('Big boss'), ('Floor boss'), ('Standard employee'), ('Intern employee'), ('Senior employee');
-INSERT INTO role (NAME, DESCRIPTION) VALUES ('Director', 'Director of the company'), ('Office manager', 'Manager of the office'), ('Employee', 'Employee in the company');
-INSERT INTO permission (NAME, DESCRIPTION) VALUES ('Building access', 'Grants access to the front door of the buiding'), ('Storage access', 'Grants access to the storage room');
+INSERT INTO door (location, description) VALUES 
+	('Front door', 'door to access the building'),
+	('Storage door', 'door of the storage room');
+	
+INSERT INTO door_user (username) VALUES 
+	('Big boss'),
+	('Floor boss'),
+	('Standard employee'),
+	('Intern employee'),
+	('Senior employee');
+	
+INSERT INTO role (NAME, DESCRIPTION) VALUES
+	('Director', 'Director of the company'),
+	('Office manager', 'Manager of the office'),
+	('Employee', 'Employee in the company');
+	
+INSERT INTO permission (NAME, DESCRIPTION) VALUES
+	('Building access', 'Grants access to the front door of the buiding'),
+	('Storage access', 'Grants access to the storage room'),
+	('View doors logs', 'Allows to view door logs');
 
 INSERT INTO door_permission_link (door_id, permission_id) VALUES 
 	((SELECT door_id FROM door WHERE location = 'Front door'), (SELECT permission_id FROM permission WHERE NAME = 'Building access')),
@@ -90,6 +106,7 @@ INSERT INTO door_permission_link (door_id, permission_id) VALUES
 INSERT INTO role_permission_link (role_id, permission_id) VALUES
 	((SELECT role_id FROM role WHERE NAME = 'Director'), (SELECT permission_id FROM permission WHERE NAME = 'Building access')),
 	((SELECT role_id FROM role WHERE NAME = 'Director'), (SELECT permission_id FROM permission WHERE NAME = 'Storage access')),
+	((SELECT role_id FROM role WHERE NAME = 'Director'), (SELECT permission_id FROM permission WHERE NAME = 'View doors logs')),
 	((SELECT role_id FROM role WHERE NAME = 'Office manager'), (SELECT permission_id FROM permission WHERE NAME = 'Storage access')),
 	((SELECT role_id FROM role WHERE NAME = 'Employee'), (SELECT permission_id FROM permission WHERE NAME = 'Building access'));
 

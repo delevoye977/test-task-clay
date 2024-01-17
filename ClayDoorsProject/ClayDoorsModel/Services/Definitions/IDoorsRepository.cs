@@ -22,12 +22,17 @@ namespace ClayDoorsModel.Services.Definitions
         IDoor? GetDoor(int doorId);
 
         /// <summary>
+        /// Returns the logs between the given dates, by the given user.
+        /// </summary>
+        /// <param name="fromDate">Begining date to retrieve the logs. If missing, uses DateTime.MinValue.</param>
+        /// <param name="toDate">End date to retrieve the logs. If missing, uses the current date.</param>
+        /// <param name="userToSearch">Username to search. If missing, searches for all.</param>
+        /// <returns>The logs between the given dates.</returns>
+        IEnumerable<IDoorUnlockLog> GetLogs(DateTime? fromDate, DateTime? toDate, string? userToSearch);
+
+        /// <summary>
         /// Logs an unlock action and its result.
         /// </summary>
-        /// <param name="time">Time when the action happened.</param>
-        /// <param name="result">Result of the action.</param>
-        /// <param name="doorId">Id of the door.</param>
-        /// <param name="username">Username unlocking the door.</param>
-        void LogUnlock(DateTime time, DoorUnlockResult result, int doorId, string username);
+        void LogUnlock(IDoorUnlockLog log);
     }
 }
