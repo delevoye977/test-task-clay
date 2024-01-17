@@ -22,6 +22,13 @@ namespace ClayDoorsModel.Services
             return await doorsRepository.GetAllDoors();
         }
 
+        public IEnumerable<IDoorUnlockLog> GetDoorUnlockLogs(DateTime? fromDate, DateTime? toDate, string? userToSearch)
+        {
+            if (fromDate == null) fromDate = DateTime.MinValue;
+            if (toDate == null) toDate = DateTime.UtcNow;
+
+            return doorsRepository.GetLogs(fromDate, toDate, userToSearch);
+        }
 
         public Task<DoorUnlockResult> UnlockDoor(int doorId, string username)
         {

@@ -15,7 +15,7 @@ namespace ClayDoorsModel.Models
 
         public string? Username { get; set; }
 
-        public DoorUnlockLog(DateTime actionTime, DoorUnlockResult actionResult, int doorId, string? username)
+        public DoorUnlockLog(DateTime actionTime, DoorUnlockResult actionResult, int? doorId, string? username)
         {
             ActionTime = actionTime;
             ActionResult = actionResult;
@@ -23,7 +23,7 @@ namespace ClayDoorsModel.Models
             Username = username;
         }
 
-        public DoorUnlockLog(int id, DateTime actionTime, DoorUnlockResult actionResult, int doorId, string? username)
+        public DoorUnlockLog(int? id, DateTime actionTime, DoorUnlockResult actionResult, int? doorId, string? username)
             : this(actionTime, actionResult, doorId, username)
         {
             Id = id;

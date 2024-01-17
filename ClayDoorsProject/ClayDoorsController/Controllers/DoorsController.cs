@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using ClayDoorsController.Reponses;
 using Microsoft.AspNetCore.Authorization;
 using ClayDoorsModel.Services.Definitions;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Security.Claims;
 
 namespace ClayDoorsProject.Controllers
 {
@@ -62,12 +64,23 @@ namespace ClayDoorsProject.Controllers
             }
         }
 
-        //[HttpGet("/logs")]
-        //public async Task<ActionResult<DoorUnlockLogsResponseDto>> GetLogs(
-        //    [FromQuery(Name = "from")] DateTime? fromDate,
-        //    [FromQuery(Name = "to")] DateTime? toDate)
-        //{
-        //    this.doorsService.GetDoorUnlockLogs(fromDate, toDate);
-        //}
+        [Authorize(Policy = "CanViewDoorLogs")]
+        [HttpGet("/logs")]
+        public async Task<ActionResult<DoorUnlockLogsResponseDto>> GetLogs(
+            [FromQuery(Name = "from")] DateTime? fromDate,
+            [FromQuery(Name = "to")] DateTime? toDate,
+            [FromQuery(Name = "user")] string? userToSearch)
+        {
+            return Ok(doorsService
+                .GetDoorUnlockLogs(fromDate, toDate, userToSearch)
+                .Select(model => new DoorUnlockLogsResponseDto
+                {
+                    Username = model.Username,
+                    DoorId = model.DoorId,
+                    ActionResult = model.ActionResult,
+                    ActionTime = model.ActionTime
+                }));
+        }
+
     }
 }

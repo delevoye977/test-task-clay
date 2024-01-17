@@ -42,5 +42,16 @@ namespace ClayDoorsDatabase.Repositories
             });
             ctx.SaveChangesAsync();
         }
+
+        public IEnumerable<IDoorUnlockLog> GetLogs(DateTime? fromDate, DateTime? toDate, string? userToSearch)
+        {
+            return ctx.DoorUnlockLogs
+                .Where(log => 
+                    log.ActionTime > fromDate 
+                    && log.ActionTime < toDate 
+                    && (userToSearch == null || log.Username == userToSearch))
+                .Select(e => e.MapToModel())
+                .ToList();
+        }
     }
 }

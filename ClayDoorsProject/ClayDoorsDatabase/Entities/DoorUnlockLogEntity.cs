@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using ClayDoorsModel.Models;
+using ClayDoorsModel.Models.Definitions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ClayDoorsDatabase.Entities
 {
@@ -18,5 +20,15 @@ namespace ClayDoorsDatabase.Entities
 
         [Column("door_id")]
         public int? DoorId { get; set; }
+
+        internal IDoorUnlockLog MapToModel()
+        {
+            return new DoorUnlockLog(
+                this.Id,
+                this.ActionTime,
+                Enum.Parse<DoorUnlockResult>(this.ActionResult),
+                this.DoorId,
+                this.Username);
+        }
     }
 }

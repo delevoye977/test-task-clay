@@ -1,5 +1,6 @@
 ﻿
 using ClayDoorsModel.Models.Definitions;
+using System.Security;
 
 namespace ClayDoorsModel.Models
 {
@@ -20,9 +21,16 @@ namespace ClayDoorsModel.Models
 
         public bool HasPermission(IDoorUserPermission permission)
         {
+            return HasPermission(permission.Name);
+        }
+
+        public bool HasPermission(string? permissionName)
+        {
+            if (permissionName == null) return false;
+
             return Roles.Any(
                 r => r.Permissions.Any(
-                    p => string.Equals(p.Name, permission.Name)));
+                    p => string.Equals(p.Name, permissionName)));
         }
     }
 }
