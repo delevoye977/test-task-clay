@@ -1,4 +1,6 @@
-﻿using ClayDoorsModel.Models.Definitions;
+﻿using ClayDoorsDatabase.Entities;
+using ClayDoorsModel;
+using ClayDoorsModel.Models.Definitions;
 using ClayDoorsModel.Services.Definitions;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +29,18 @@ namespace ClayDoorsDatabase.Repositories
                 .FirstOrDefault(d => d.Id == doorId);
             if (entity == null) return null;
             return entity.MapToModel();
+        }
+
+        public async void LogUnlock(DateTime time, DoorUnlockResult result, int doorId, string username)
+        {
+            await ctx.DoorUnlockLogs.AddAsync(new DoorUnlockLogEntity()
+            {
+                ActionTime = time,
+                ActionResult = result.ToString(),
+                DoorId = doorId,
+                Username = username,
+            });
+            ctx.SaveChangesAsync();
         }
     }
 }

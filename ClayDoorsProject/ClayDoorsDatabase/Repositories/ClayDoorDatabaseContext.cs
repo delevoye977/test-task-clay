@@ -19,6 +19,7 @@ namespace ClayDoorsDatabase.Repositories
 
         internal DbSet<DoorEntity> Doors { get; set; }
         internal DbSet<DoorUserEntity> Users { get; set; }
+        internal DbSet<DoorUnlockLogEntity> DoorUnlockLogs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

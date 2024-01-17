@@ -19,5 +19,14 @@ namespace ClayDoorsModel.Services.Definitions
         /// <param name="doorId">ID of the door to get.</param>
         /// <returns>The door with the given ID if it exists, null otherwise</returns>
         IDoor? GetDoor(int doorId);
+
+        /// <summary>
+        /// Logs an unlock action and its result.
+        /// </summary>
+        /// <param name="time">Time when the action happened.</param>
+        /// <param name="result">Result of the action.</param>
+        /// <param name="doorId">Id of the door.</param>
+        /// <param name="username">Username unlocking the door.</param>
+        void LogUnlock(DateTime time, DoorUnlockResult result, int doorId, string username);
     }
 }

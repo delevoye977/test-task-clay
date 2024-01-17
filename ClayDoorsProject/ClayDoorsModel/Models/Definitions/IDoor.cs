@@ -18,7 +18,7 @@
 
         /// <summary>
         /// Tells if the door can be unlocked by the given user.
-        ///
+        /// 
         /// If the door has no permissions set, none can open it.
         /// </summary>
         /// <param name="user">User trying to open the door.</param>

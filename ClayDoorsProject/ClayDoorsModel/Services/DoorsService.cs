@@ -24,15 +24,23 @@ namespace ClayDoorsModel.Services
 
         public Task<DoorUnlockResult> UnlockDoor(int doorId, string username)
         {
+            var result = DoorUnlockResult.Failure;
+
             var door = doorsRepository.GetDoor(doorId);
             var user = doorUserReadService.GetUser(username);
 
-            if (door != null && door.CanBeUnlockedBy(user))
+            if (door == null) result = DoorUnlockResult.DoorNotFound;
+            else if (user == null) result = DoorUnlockResult.UserNotFound;
+            else if (!door.CanBeUnlockedBy(user)) result = DoorUnlockResult.Unauthorized;
+            else
             {
-                // Call to actually unlock the door
-                return Task.FromResult(DoorUnlockResult.Success);
+                // TODO : Actual call to unlock the door.
+
+                result = DoorUnlockResult.Success;
             }
-            return Task.FromResult(DoorUnlockResult.Failure);
+            this.doorsRepository.LogUnlock(DateTime.UtcNow, result, doorId, username);
+
+            return Task.FromResult(result);
         }
     }
 }
