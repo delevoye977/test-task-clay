@@ -1,8 +1,7 @@
-﻿namespace ClayDoorsModel
+﻿namespace ClayDoorsModel.Models
 {
     public enum DoorUnlockResult
     {
-        Failure,
         UserNotFound,
         Unauthorized,
         DoorNotFound,

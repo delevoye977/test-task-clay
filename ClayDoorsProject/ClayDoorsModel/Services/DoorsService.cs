@@ -1,4 +1,5 @@
-﻿using ClayDoorsModel.Models.Definitions;
+﻿using ClayDoorsModel.Models;
+using ClayDoorsModel.Models.Definitions;
 using ClayDoorsModel.Services.Definitions;
 
 namespace ClayDoorsModel.Services
@@ -6,14 +7,14 @@ namespace ClayDoorsModel.Services
     public class DoorsService : IDoorsService
     {
         private readonly IDoorsRepository doorsRepository;
-        private readonly IDoorUserService doorUserReadService;
+        private readonly IDoorUserService doorUserService;
 
         public DoorsService(
             IDoorsRepository doorsRepository,
-            IDoorUserService doorUserReadService)
+            IDoorUserService doorUserService)
         {
             this.doorsRepository = doorsRepository;
-            this.doorUserReadService = doorUserReadService;
+            this.doorUserService = doorUserService;
         }
 
         public async Task<IEnumerable<IDoor>> GetDoors() //Wishing covariant return types makes it to C# soon
@@ -24,20 +25,31 @@ namespace ClayDoorsModel.Services
 
         public Task<DoorUnlockResult> UnlockDoor(int doorId, string username)
         {
-            var result = DoorUnlockResult.Failure;
+            DoorUnlockResult result;
 
-            var door = doorsRepository.GetDoor(doorId);
-            var user = doorUserReadService.GetUser(username);
-
-            if (door == null) result = DoorUnlockResult.DoorNotFound;
-            else if (user == null) result = DoorUnlockResult.UserNotFound;
-            else if (!door.CanBeUnlockedBy(user)) result = DoorUnlockResult.Unauthorized;
+            if (username == null)
+                result = DoorUnlockResult.Unauthorized;
             else
             {
-                // TODO : Actual call to unlock the door.
+                var user = doorUserService.GetUser(username);
 
-                result = DoorUnlockResult.Success;
+                if (user == null)
+                    result = DoorUnlockResult.UserNotFound;
+                else
+                {
+                    var door = doorsRepository.GetDoor(doorId);
+                    if (door == null) result = DoorUnlockResult.DoorNotFound;
+                    else if (!door.CanBeUnlockedBy(user)) result = DoorUnlockResult.Unauthorized;
+                    else
+                    {
+                        // TODO : Actual call to unlock the door.
+
+                        result = DoorUnlockResult.Success;
+                    }
+                }
             }
+            
+            
             this.doorsRepository.LogUnlock(DateTime.UtcNow, result, doorId, username);
 
             return Task.FromResult(result);

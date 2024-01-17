@@ -1,3 +1,4 @@
+using ClayDoorsController.Middlewares;
 using ClayDoorsDatabase.Repositories;
 using ClayDoorsMain.Swagger;
 using ClayDoorsModel.Services;
@@ -33,6 +34,8 @@ AddRepositories();
 
 AddServices();
 
+AddMiddlewares();
+
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -54,6 +57,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseExceptionHandler(_ => { });
+
 app.MapControllers();
 
 app.Run();
@@ -69,4 +74,10 @@ void AddServices()
 {
     builder.Services.AddTransient<IDoorsService, DoorsService>();
     builder.Services.AddTransient<IDoorUserService, DoorUserService>();
+}
+
+void AddMiddlewares()
+{
+    builder.Services.AddExceptionHandler<LoggerExceptionHandler>();
+    builder.Services.AddExceptionHandler<GeneralExceptionHandler>();
 }

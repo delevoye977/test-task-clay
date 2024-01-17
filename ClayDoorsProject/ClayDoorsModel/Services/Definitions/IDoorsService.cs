@@ -1,4 +1,5 @@
-﻿using ClayDoorsModel.Models.Definitions;
+﻿using ClayDoorsModel.Models;
+using ClayDoorsModel.Models.Definitions;
 
 namespace ClayDoorsModel.Services.Definitions
 {

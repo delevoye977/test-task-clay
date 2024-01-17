@@ -42,10 +42,24 @@ namespace ClayDoorsProject.Controllers
         /// <param name="doorId">Id of the door to unlock.</param>
         /// <returns>If the unlock operation is a success.</returns>
         [HttpPost("/{doorId}/unlock")]
-        public async Task<DoorUnlockResponseDto> UnlockDoor([FromRoute] int doorId)
+        public async Task<ActionResult<DoorUnlockResponseDto>> UnlockDoor([FromRoute] int doorId)
         {
             var username = User.Identity?.Name;
-            return new DoorUnlockResponseDto(await doorsService.UnlockDoor(doorId, username));
+
+            var result = await doorsService.UnlockDoor(doorId, username);
+
+            var resultResponse = new DoorUnlockResponseDto(result);
+            switch (result)
+            {
+                case ClayDoorsModel.Models.DoorUnlockResult.UserNotFound:
+                case ClayDoorsModel.Models.DoorUnlockResult.Unauthorized:
+                    return Unauthorized(resultResponse);
+                case ClayDoorsModel.Models.DoorUnlockResult.DoorNotFound:
+                    return NotFound(resultResponse);
+                case ClayDoorsModel.Models.DoorUnlockResult.Success:
+                    return Ok(resultResponse);
+                default: return BadRequest(resultResponse);
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using ClayDoorsDatabase.Entities;
-using ClayDoorsModel;
+using ClayDoorsModel.Models;
 using ClayDoorsModel.Models.Definitions;
 using ClayDoorsModel.Services.Definitions;
 using Microsoft.EntityFrameworkCore;
