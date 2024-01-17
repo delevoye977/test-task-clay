@@ -50,7 +50,7 @@ namespace ClayDoorsModel.Services
             }
             
             
-            this.doorsRepository.LogUnlock(DateTime.UtcNow, result, doorId, username);
+            this.doorsRepository.LogUnlock(new DoorUnlockLog(DateTime.UtcNow, result, doorId, username));
 
             return Task.FromResult(result);
         }

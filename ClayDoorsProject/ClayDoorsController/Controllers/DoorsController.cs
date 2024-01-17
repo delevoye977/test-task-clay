@@ -61,5 +61,13 @@ namespace ClayDoorsProject.Controllers
                 default: return BadRequest(resultResponse);
             }
         }
+
+        //[HttpGet("/logs")]
+        //public async Task<ActionResult<DoorUnlockLogsResponseDto>> GetLogs(
+        //    [FromQuery(Name = "from")] DateTime? fromDate,
+        //    [FromQuery(Name = "to")] DateTime? toDate)
+        //{
+        //    this.doorsService.GetDoorUnlockLogs(fromDate, toDate);
+        //}
     }
 }

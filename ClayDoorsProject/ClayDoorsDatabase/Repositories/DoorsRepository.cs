@@ -31,14 +31,14 @@ namespace ClayDoorsDatabase.Repositories
             return entity.MapToModel();
         }
 
-        public async void LogUnlock(DateTime time, DoorUnlockResult result, int doorId, string username)
+        public async void LogUnlock(IDoorUnlockLog log)
         {
             await ctx.DoorUnlockLogs.AddAsync(new DoorUnlockLogEntity()
             {
-                ActionTime = time,
-                ActionResult = result.ToString(),
-                DoorId = doorId,
-                Username = username,
+                ActionTime = log.ActionTime,
+                ActionResult = log.ActionResult.ToString(),
+                DoorId = log.DoorId,
+                Username = log.Username,
             });
             ctx.SaveChangesAsync();
         }

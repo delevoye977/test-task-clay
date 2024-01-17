@@ -22,6 +22,14 @@ namespace ClayDoorsModel.Test.Services
             Mock.Verify(doorsRepositoryMock);
         }
 
+        private static bool DoorUnlockLogEquals(IDoorUnlockLog log, DoorUnlockResult result, int? doorId, string? username)
+        {
+            return log.Id == null
+                && log.ActionResult == result
+                && log.DoorId == doorId
+                && string.Equals(log.Username, username);
+        }
+
         [Fact]
         public void UnlockDoor_AnyDoorNullUsername_Unauthorized()
         {
@@ -31,7 +39,8 @@ namespace ClayDoorsModel.Test.Services
 
             var doorsRepositoryMock = new Mock<IDoorsRepository>(MockBehavior.Strict);
             doorsRepositoryMock
-                .Setup(d => d.LogUnlock(It.IsAny<DateTime>(), expectedResult, doorId, username))
+                .Setup(d => d.LogUnlock(
+                    It.Is<IDoorUnlockLog>(x => DoorUnlockLogEquals(x, expectedResult, doorId, username))))
                 .Verifiable();
 
             var doorUsersServiceMock = new Mock<IDoorUserService>(MockBehavior.Strict);
@@ -48,7 +57,8 @@ namespace ClayDoorsModel.Test.Services
 
             var doorsRepositoryMock = new Mock<IDoorsRepository>();
             doorsRepositoryMock
-                .Setup(d => d.LogUnlock(It.IsAny<DateTime>(), expectedResult, doorId, username))
+                .Setup(d => d.LogUnlock(
+                    It.Is<IDoorUnlockLog>(x => DoorUnlockLogEquals(x, expectedResult, doorId, username))))
                 .Verifiable();
 
             var doorUsersServiceMock = new Mock<IDoorUserService>();
@@ -68,7 +78,8 @@ namespace ClayDoorsModel.Test.Services
 
             var doorsRepositoryMock = new Mock<IDoorsRepository>();
             doorsRepositoryMock
-                .Setup(d => d.LogUnlock(It.IsAny<DateTime>(), expectedResult, doorId, username))
+                .Setup(d => d.LogUnlock(
+                    It.Is<IDoorUnlockLog>(x => DoorUnlockLogEquals(x, expectedResult, doorId, username))))
                 .Verifiable();
 
             var doorUsersServiceMock = new Mock<IDoorUserService>();
@@ -89,7 +100,8 @@ namespace ClayDoorsModel.Test.Services
 
             var doorsRepositoryMock = new Mock<IDoorsRepository>();
             doorsRepositoryMock
-                .Setup(d => d.LogUnlock(It.IsAny<DateTime>(), expectedResult, doorId, username))
+                .Setup(d => d.LogUnlock(
+                    It.Is<IDoorUnlockLog>(x => DoorUnlockLogEquals(x, expectedResult, doorId, username))))
                 .Verifiable();
             doorsRepositoryMock
                 .Setup(d => d.GetDoor(doorId))
@@ -118,7 +130,8 @@ namespace ClayDoorsModel.Test.Services
 
             var doorsRepositoryMock = new Mock<IDoorsRepository>();
             doorsRepositoryMock
-                .Setup(d => d.LogUnlock(It.IsAny<DateTime>(), expectedResult, doorId, username))
+                .Setup(d => d.LogUnlock(
+                    It.Is<IDoorUnlockLog>(x => DoorUnlockLogEquals(x, expectedResult, doorId, username))))
                 .Verifiable();
             doorsRepositoryMock
                 .Setup(d => d.GetDoor(doorId))
@@ -148,7 +161,8 @@ namespace ClayDoorsModel.Test.Services
 
             var doorsRepositoryMock = new Mock<IDoorsRepository>();
             doorsRepositoryMock
-                .Setup(d => d.LogUnlock(It.IsAny<DateTime>(), expectedResult, doorId, username))
+                .Setup(d => d.LogUnlock(
+                    It.Is<IDoorUnlockLog>(x => DoorUnlockLogEquals(x, expectedResult, doorId, username))))
                 .Verifiable();
             doorsRepositoryMock
                 .Setup(d => d.GetDoor(doorId))
