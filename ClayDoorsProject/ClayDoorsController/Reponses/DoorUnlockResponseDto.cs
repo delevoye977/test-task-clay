@@ -1,4 +1,4 @@
-﻿using ClayDoorsModel;
+﻿using ClayDoorsModel.Models;
 
 namespace ClayDoorsController.Reponses
 {

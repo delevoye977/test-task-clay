@@ -1,8 +1,8 @@
-﻿using ClayDoorsModel.Models;
+﻿using ClayDoorsModel.Models.Definitions;
 
 namespace ClayDoorsController.Reponses
 {
-    public class DoorResponseDto : IDoor
+    public class DoorResponseDto
     {
         public int Id { get; }
         public string Location { get; }

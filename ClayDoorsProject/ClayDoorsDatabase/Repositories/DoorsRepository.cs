@@ -1,5 +1,8 @@
-﻿using ClayDoorsModel.Models;
-using ClayDoorsModel.Services;
+﻿using ClayDoorsDatabase.Entities;
+using ClayDoorsModel.Models;
+using ClayDoorsModel.Models.Definitions;
+using ClayDoorsModel.Services.Definitions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClayDoorsDatabase.Repositories
 {
@@ -15,12 +18,29 @@ namespace ClayDoorsDatabase.Repositories
         public async Task<IEnumerable<IDoor>> GetAllDoors()
         {
             return await Task.Run(
-                () => ctx.Doors.Select(d => new Door(d.Id, d.Location, d.Description)));
+                () => ctx.Doors.Include(e => e.Permissions).Select(
+                    d => d.MapToModel())
+                .ToList());
         }
 
         public IDoor? GetDoor(int doorId)
         {
-            return ctx.Doors.FirstOrDefault(d => d.Id == doorId);
+            var entity = ctx.Doors.Include(e => e.Permissions)
+                .FirstOrDefault(d => d.Id == doorId);
+            if (entity == null) return null;
+            return entity.MapToModel();
+        }
+
+        public async void LogUnlock(DateTime time, DoorUnlockResult result, int doorId, string username)
+        {
+            await ctx.DoorUnlockLogs.AddAsync(new DoorUnlockLogEntity()
+            {
+                ActionTime = time,
+                ActionResult = result.ToString(),
+                DoorId = doorId,
+                Username = username,
+            });
+            ctx.SaveChangesAsync();
         }
     }
 }

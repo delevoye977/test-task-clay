@@ -10,11 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CreateDatabase.sql = CreateDatabase.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClayDoorsModel", "ClayDoorsModel\ClayDoorsModel.csproj", "{EF37E54C-03C0-4A5E-BFA3-8FD901D6F0FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClayDoorsModel", "ClayDoorsModel\ClayDoorsModel.csproj", "{EF37E54C-03C0-4A5E-BFA3-8FD901D6F0FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClayDoorsDatabase", "ClayDoorsDatabase\ClayDoorsDatabase.csproj", "{16F8D71A-E6B0-48DD-8244-FF43F7E8AC98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClayDoorsDatabase", "ClayDoorsDatabase\ClayDoorsDatabase.csproj", "{16F8D71A-E6B0-48DD-8244-FF43F7E8AC98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClayDoorsController", "ClayDoorsController\ClayDoorsController.csproj", "{04C454B7-7130-4072-88B7-AA4EB986788F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClayDoorsController", "ClayDoorsController\ClayDoorsController.csproj", "{04C454B7-7130-4072-88B7-AA4EB986788F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClayDoorsModel.Test", "ClayDoorsModel.Test\ClayDoorsModel.Test.csproj", "{336AC8A5-7144-4B04-A6B0-09FE9A44A54A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{04C454B7-7130-4072-88B7-AA4EB986788F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04C454B7-7130-4072-88B7-AA4EB986788F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04C454B7-7130-4072-88B7-AA4EB986788F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{336AC8A5-7144-4B04-A6B0-09FE9A44A54A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{336AC8A5-7144-4B04-A6B0-09FE9A44A54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{336AC8A5-7144-4B04-A6B0-09FE9A44A54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{336AC8A5-7144-4B04-A6B0-09FE9A44A54A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
