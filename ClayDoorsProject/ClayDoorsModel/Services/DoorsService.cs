@@ -1,17 +1,26 @@
-﻿namespace ClayDoorsModel.Services
+﻿using ClayDoorsModel.Models.Definitions;
+using ClayDoorsModel.Services.Definitions;
+
+namespace ClayDoorsModel.Services
 {
-    public class DoorsWriteService : IDoorsWriteService
+    public class DoorsService : IDoorsService
     {
         private readonly IDoorsRepository doorsRepository;
-        private readonly IDoorUserReadService doorUserReadService;
+        private readonly IDoorUserService doorUserReadService;
 
-        public DoorsWriteService(
+        public DoorsService(
             IDoorsRepository doorsRepository,
-            IDoorUserReadService doorUserReadService)
+            IDoorUserService doorUserReadService)
         {
             this.doorsRepository = doorsRepository;
             this.doorUserReadService = doorUserReadService;
         }
+
+        public async Task<IEnumerable<IDoor>> GetDoors() //Wishing covariant return types makes it to C# soon
+        {
+            return await doorsRepository.GetAllDoors();
+        }
+
 
         public Task<DoorUnlockResult> UnlockDoor(int doorId, string username)
         {

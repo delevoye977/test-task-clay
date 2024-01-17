@@ -1,4 +1,6 @@
 ﻿
+using ClayDoorsModel.Models.Definitions;
+
 namespace ClayDoorsModel.Models
 {
     public class Door : IDoor

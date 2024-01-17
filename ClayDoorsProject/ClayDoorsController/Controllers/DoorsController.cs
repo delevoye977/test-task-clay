@@ -1,8 +1,8 @@
-﻿using ClayDoorsModel.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ClayDoorsController.Reponses;
 using Microsoft.AspNetCore.Authorization;
+using ClayDoorsModel.Services.Definitions;
 
 namespace ClayDoorsProject.Controllers
 {
@@ -14,17 +14,14 @@ namespace ClayDoorsProject.Controllers
     [ApiController]
     public class DoorsController : ControllerBase
     {
-        private readonly IDoorsReadService doorReadService;
-        private readonly IDoorsWriteService doorWriteService;
+        private readonly IDoorsService doorsService;
         private readonly ILogger<DoorsController> logger;
 
         public DoorsController(
-            IDoorsReadService doorReadService,
-            IDoorsWriteService doorWriteService,
+            IDoorsService doorsService,
             ILogger<DoorsController> logger) 
         {
-            this.doorReadService = doorReadService;
-            this.doorWriteService = doorWriteService;
+            this.doorsService = doorsService;
             this.logger = logger;
         }
 
@@ -35,7 +32,7 @@ namespace ClayDoorsProject.Controllers
         [HttpGet]
         public async Task<IEnumerable<DoorResponseDto>> GetAllDoors()
         {
-            return (await doorReadService.GetDoors())
+            return (await doorsService.GetDoors())
                 .Select(d => new DoorResponseDto(d));
         }
 
@@ -48,7 +45,7 @@ namespace ClayDoorsProject.Controllers
         public async Task<DoorUnlockResponseDto> UnlockDoor([FromRoute] int doorId)
         {
             var username = User.Identity?.Name;
-            return new DoorUnlockResponseDto(await doorWriteService.UnlockDoor(doorId, username));
+            return new DoorUnlockResponseDto(await doorsService.UnlockDoor(doorId, username));
         }
     }
 }

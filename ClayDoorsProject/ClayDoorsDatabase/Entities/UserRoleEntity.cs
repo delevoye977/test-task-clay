@@ -1,6 +1,7 @@
 ﻿
 
 using ClayDoorsModel.Models;
+using ClayDoorsModel.Models.Definitions;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ClayDoorsDatabase.Entities

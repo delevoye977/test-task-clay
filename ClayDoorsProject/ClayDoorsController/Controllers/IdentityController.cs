@@ -4,8 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using ClayDoorsModel.Services;
 using System.Security.Claims;
+using ClayDoorsModel.Services.Definitions;
 
 namespace ClayDoorsController.Controllers
 {
@@ -22,17 +22,17 @@ namespace ClayDoorsController.Controllers
         private readonly string issuer;
         private readonly int tokenLifetime;
 
-        private readonly IDoorUserReadService doorUserReadService;
+        private readonly IDoorUserService doorUserService;
 
         public IdentityController(IConfiguration configuration,
-            IDoorUserReadService doorUserReadService)
+            IDoorUserService doorUserService)
         {
             audience = configuration.GetValue<string>("JwtSettings:Audience")!;
             issuer = configuration.GetValue<string>("JwtSettings:Issuer")!;
             issuerKey = Encoding.UTF8.GetBytes(configuration.GetValue<string>("JwtSettings:IssuerKey")!);
             tokenLifetime = configuration.GetValue<int>("JwtSettings:TokenLifetimeSeconds");
 
-            this.doorUserReadService = doorUserReadService;
+            this.doorUserService = doorUserService;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace ClayDoorsController.Controllers
         [HttpPost("token")]
         public IActionResult CreateToken([FromBody]CreateTokenRequest request)
         {
-            var user = doorUserReadService.GetUser(request.Username);
+            var user = doorUserService.GetUser(request.Username);
             if (user == null)
                 return Unauthorized();
 

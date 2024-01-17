@@ -1,12 +1,11 @@
 using ClayDoorsDatabase.Repositories;
 using ClayDoorsMain.Swagger;
 using ClayDoorsModel.Services;
+using ClayDoorsModel.Services.Definitions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
@@ -68,7 +67,6 @@ void AddRepositories()
 
 void AddServices()
 {
-    builder.Services.AddTransient<IDoorsReadService, DoorsReadService>();
-    builder.Services.AddTransient<IDoorsWriteService, DoorsWriteService>();
-    builder.Services.AddTransient<IDoorUserReadService, DoorUserReadService>();
+    builder.Services.AddTransient<IDoorsService, DoorsService>();
+    builder.Services.AddTransient<IDoorUserService, DoorUserService>();
 }

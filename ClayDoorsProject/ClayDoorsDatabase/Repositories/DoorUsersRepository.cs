@@ -1,5 +1,5 @@
-﻿using ClayDoorsModel.Models;
-using ClayDoorsModel.Services;
+﻿using ClayDoorsModel.Models.Definitions;
+using ClayDoorsModel.Services.Definitions;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClayDoorsDatabase.Repositories

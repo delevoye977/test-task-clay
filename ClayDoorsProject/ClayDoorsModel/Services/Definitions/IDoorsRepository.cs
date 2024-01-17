@@ -1,6 +1,6 @@
-﻿using ClayDoorsModel.Models;
+﻿using ClayDoorsModel.Models.Definitions;
 
-namespace ClayDoorsModel.Services
+namespace ClayDoorsModel.Services.Definitions
 {
     /// <summary>
     /// Repository to access the data.

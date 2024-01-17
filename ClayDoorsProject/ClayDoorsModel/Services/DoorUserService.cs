@@ -1,11 +1,12 @@
-﻿using ClayDoorsModel.Models;
+﻿using ClayDoorsModel.Models.Definitions;
+using ClayDoorsModel.Services.Definitions;
 
 namespace ClayDoorsModel.Services
 {
-    public class DoorUserReadService : IDoorUserReadService
+    public class DoorUserService : IDoorUserService
     {
         private readonly IDoorUsersRepository doorUserRepository;
-        public DoorUserReadService(IDoorUsersRepository doorUserRepository) 
+        public DoorUserService(IDoorUsersRepository doorUserRepository) 
         {
             this.doorUserRepository = doorUserRepository;
         }

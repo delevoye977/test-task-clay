@@ -1,4 +1,4 @@
-﻿namespace ClayDoorsModel.Models
+﻿namespace ClayDoorsModel.Models.Definitions
 {
     /// <summary>
     /// Describes a user of the doors.
