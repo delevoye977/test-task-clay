@@ -7,11 +7,6 @@ namespace ClayDoorsDatabase.Entities
     {
         public IdType? Id { get; set; }
 
-        public AbstractEntity(ModelType model)
-        {
-            this.Id = model.Id;
-        }
-
         public abstract ModelType MapToModel();
     }
 }

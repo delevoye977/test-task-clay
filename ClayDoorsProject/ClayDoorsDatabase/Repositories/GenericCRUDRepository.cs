@@ -8,19 +8,21 @@ namespace ClayDoorsDatabase.Repositories
 {
     public abstract class GenericCRUDRepository<ModelType, IdType>
         : ICRUDRepository<ModelType, IdType>
-        where ModelType : GenericModel<IdType>
+        where ModelType : IModel<IdType>
     {
-        protected IDatabaseContext<AbstractEntity<ModelType, IdType>, ModelType, IdType> Context { get; set; }
+        protected readonly Func<DbSet<AbstractEntity<ModelType, IdType>>> GetDbSet;
+        protected readonly Func<Task<int>> SaveAsync;
 
-        public GenericCRUDRepository(IDatabaseContext<AbstractEntity<ModelType, IdType>, ModelType, IdType> ctx)
+        protected GenericCRUDRepository(Func<DbSet<AbstractEntity<ModelType, IdType>>> getDbSetFunc, Func<Task<int>> saveAsyncFunc)
         {
-            this.Context = ctx;
+            this.GetDbSet = getDbSetFunc;
+            this.SaveAsync = saveAsyncFunc;
         }
 
         public async Task<ModelType?> Get(IdType? id)
         {
             var entity = await ExecuteGetQuery(id);
-            return entity?.MapToModel();
+            return MapToModel(entity);
         }
 
         protected async Task<AbstractEntity<ModelType, IdType>?> ExecuteGetQuery(IdType? id)
@@ -66,5 +68,8 @@ namespace ClayDoorsDatabase.Repositories
         }
 
         protected abstract AbstractEntity<ModelType, IdType> MapToEntity(ModelType model);
+
+        protected abstract ModelType? MapToModel(AbstractEntity<ModelType, IdType>? entity);
+
     }
 }

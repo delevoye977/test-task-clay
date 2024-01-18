@@ -19,13 +19,11 @@ namespace ClayDoorsDatabase.Repositories
 
 
         private DbSet<DoorEntity> doors;
-        internal DbSet<DoorEntity> Doors 
+        public DbSet<DoorEntity> Doors 
         { 
             get => doors;
             set { doors = value; }
         }
-
-        DbSet<DoorEntity> IDatabaseContext<DoorEntity, IDoor, int>.DbSet => Doors;
 
         internal DbSet<DoorUserEntity> Users { get; set; }
         internal DbSet<DoorUnlockLogEntity> DoorUnlockLogs { get; set; }

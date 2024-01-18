@@ -9,7 +9,7 @@ namespace ClayDoorsDatabase.Repositories
         private readonly ClayDoorDatabaseContext ctx;
 
         public DoorsRepository(ClayDoorDatabaseContext ctx)
-            : base(ctx)
+            : base(() => ctx.Doors, () => ctx.SaveAsync())
         {
             this.ctx = ctx;
         }
@@ -23,7 +23,7 @@ namespace ClayDoorsDatabase.Repositories
                 DoorId = log.DoorId,
                 Username = log.Username,
             });
-            ctx.SaveChangesAsync();
+            await ctx.SaveChangesAsync();
         }
 
         public IEnumerable<IDoorUnlockLog> GetLogs(DateTime? fromDate, DateTime? toDate, string? userToSearch)
@@ -39,7 +39,17 @@ namespace ClayDoorsDatabase.Repositories
 
         protected override AbstractEntity<IDoor, int> MapToEntity(IDoor model)
         {
-            return new DoorEntity(model);
+            return new DoorEntity
+            {
+                Id = model.Id,
+                Location = model.Location,
+                Description = model.Description,
+            };
+        }
+
+        protected override IDoor? MapToModel(AbstractEntity<IDoor, int>? entity)
+        {
+            return entity?.MapToModel();
         }
     }
 }

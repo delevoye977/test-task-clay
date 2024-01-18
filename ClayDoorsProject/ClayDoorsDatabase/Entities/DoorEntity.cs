@@ -6,14 +6,8 @@ namespace ClayDoorsDatabase.Entities
 {
 
     [Table("door")]
-    internal class DoorEntity : AbstractEntity<IDoor, int>
+    public class DoorEntity : AbstractEntity<IDoor, int>
     {
-        public DoorEntity(IDoor model) 
-            : base(model)
-        {
-            this.Location = model.Location;
-            this.Description = model.Description;
-        }
 
         [Column("door_id")]
         public new int Id { get => base.Id; set => base.Id = value; }
