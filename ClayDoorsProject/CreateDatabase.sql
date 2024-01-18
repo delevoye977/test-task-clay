@@ -1,4 +1,4 @@
-CREATE OR REPLACE DATABASE `claydoors`;
+CREATE DATABASE `claydoors`;
 
 USE `claydoors`;
 

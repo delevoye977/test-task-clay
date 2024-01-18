@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "04fc43ee-d159-4feb-a85f-18becdaadd4e",
+		"name": "ClayDoor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32429511"
+	},
+	"item": [
+		{
+			"name": "Doors",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/doors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"doors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/doors/1/unlock",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"doors",
+								"1",
+								"unlock"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Existing",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/doors/1/unlock",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"doors",
+										"1",
+										"unlock"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Jan 2024 19:44:13 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isSuccess\": true\n}"
+						},
+						{
+							"name": "Not existing",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/doors/666/unlock",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"doors",
+										"666",
+										"unlock"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/doors/logs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"doors",
+								"logs"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2024-01-12T01:00:00.000Z",
+									"disabled": true
+								},
+								{
+									"key": "to",
+									"value": "2024-01-20T01:00:00.000Z",
+									"disabled": true
+								},
+								{
+									"key": "user",
+									"value": "Big Boss",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{BearerToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Floor Boss\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/identity/token",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"identity",
+						"token"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "none",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"none\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/identity/token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"token"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 Jan 2024 19:30:49 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-0def9a3a6b335dda6a54178ca94e4ec8-2ed9609e33c21dc1-00\"\n}"
+				},
+				{
+					"name": "Big Boss",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Big Boss\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/identity/token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 Jan 2024 19:30:10 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzYWEyNTMzNS03NTdmLTRjNWEtOTMwNC1lNzA5MjNjOGM1ZjciLCJuYW1lIjoiQmlnIGJvc3MiLCJuYW1laWQiOiIxIiwibmJmIjoxNzA1NjA2MjEwLCJleHAiOjE3MDY2MDYyMDksImlhdCI6MTcwNTYwNjIxMCwiaXNzIjoiQ2xheWRvb3IgaWRlbnRpdHkgcHJvdmlkZXIiLCJhdWQiOiJDbGF5ZG9vciBkb29ycyBBUEkifQ.SLm0V7nE52RTYsrJjsAif93KHY2P0evOqAih_BR-6bo"
+				},
+				{
+					"name": "Senior Employee",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Senior Employee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/identity/token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 Jan 2024 19:31:21 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiNmQ5ODg0My1hOWQ4LTRlZjUtYjdkMy04MjE1ODZiZjQ1MzIiLCJuYW1lIjoiU2VuaW9yIGVtcGxveWVlIiwibmFtZWlkIjoiNSIsIm5iZiI6MTcwNTYwNjI4MSwiZXhwIjoxNzA2NjA2MjgwLCJpYXQiOjE3MDU2MDYyODEsImlzcyI6IkNsYXlkb29yIGlkZW50aXR5IHByb3ZpZGVyIiwiYXVkIjoiQ2xheWRvb3IgZG9vcnMgQVBJIn0.XV70dbd24I_tmRtgO1inrLUqYfOZXHdBh2Q98yU38Js"
+				},
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Floor boss\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/identity/token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"token"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 Jan 2024 19:32:08 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-b63d183f7438d38faebec23a3de01074-a4793ad8c05d0635-00\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BearerToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyN2VlMjc0OC1jODNhLTQxMmMtOWM3Yi1kODE4MGUwMzZjYjYiLCJuYW1lIjoiRmxvb3IgYm9zcyIsIm5hbWVpZCI6IjIiLCJuYmYiOjE3MDU2MDc1NzEsImV4cCI6MTcwNjYwNzU3MCwiaWF0IjoxNzA1NjA3NTcxLCJpc3MiOiJDbGF5ZG9vciBpZGVudGl0eSBwcm92aWRlciIsImF1ZCI6IkNsYXlkb29yIGRvb3JzIEFQSSJ9.k4gRKYTz34-ZMEGOLKK-Te2KAYquwOsPqolN7UzHn9I"
+		}
+	]
+}
