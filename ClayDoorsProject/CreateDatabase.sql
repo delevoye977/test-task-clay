@@ -115,8 +115,20 @@ INSERT INTO user_role_link VALUES
 	((SELECT user_id FROM door_user WHERE username = 'Floor boss'), (SELECT role_id FROM role WHERE NAME = 'Office manager')),
 	((SELECT user_id FROM door_user WHERE username = 'Floor boss'), (SELECT role_id FROM role WHERE NAME = 'Employee')),
 	((SELECT user_id FROM door_user WHERE username = 'Standard employee'), (SELECT role_id FROM role WHERE NAME = 'Employee')),
-	((SELECT user_id FROM door_user WHERE username = 'Intern employee'), (SELECT role_id FROM role WHERE NAME = 'Employee')),
 	((SELECT user_id FROM door_user WHERE username = 'Senior employee'), (SELECT role_id FROM role WHERE NAME = 'Employee'));
+
+INSERT INTO `door_unlock_log` (`log_id`, `action_time`, `action_result`, `username`, `door_id`) VALUES
+	(1, '2024-01-12 08:45:24', 'Success', 'Intern employee', 2),
+	(2, '2024-01-14 22:05:44', 'Success', 'Big boss', 1),
+	(3, '2024-01-14 22:05:48', 'Success', 'Big boss', 2),
+	(4, '2024-01-17 22:05:52', 'DoorNotFound', 'Big boss', 3),
+	(5, '2024-01-18 08:46:16', 'DoorNotFound', 'Senior Employee', 1),
+	(6, '2024-01-18 12:36:55', 'Unauthorized', 'Intern Employee', 1),
+	(7, '2024-01-18 12:37:03', 'DoorNotFound', 'Big boss', 3),
+	(8, '2024-01-18 18:42:50', 'Success', 'Big boss', 1),
+	(9, '2024-01-18 18:44:13', 'Success', 'Big boss', 1),
+	(10, '2024-01-18 18:45:10', 'DoorNotFound', 'Big boss', 666);
+
 
 SELECT * FROM door_user;
 SELECT * FROM door;

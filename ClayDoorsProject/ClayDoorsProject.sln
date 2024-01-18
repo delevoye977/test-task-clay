@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClayDoorsMain", "ClayDoorsP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{486FB052-6108-40DD-96A0-FAD6EA88B9A2}"
 	ProjectSection(SolutionItems) = preProject
+		ClayDoor.postman_collection.json = ClayDoor.postman_collection.json
 		CreateDatabase.sql = CreateDatabase.sql
 	EndProjectSection
 EndProject
@@ -16,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClayDoorsDatabase", "ClayDo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClayDoorsController", "ClayDoorsController\ClayDoorsController.csproj", "{04C454B7-7130-4072-88B7-AA4EB986788F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClayDoorsModel.Test", "ClayDoorsModel.Test\ClayDoorsModel.Test.csproj", "{336AC8A5-7144-4B04-A6B0-09FE9A44A54A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClayDoorsModel.Test", "ClayDoorsModel.Test\ClayDoorsModel.Test.csproj", "{336AC8A5-7144-4B04-A6B0-09FE9A44A54A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
