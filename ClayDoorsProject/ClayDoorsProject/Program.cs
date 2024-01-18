@@ -36,6 +36,10 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy(
         "CanViewDoorLogs",
         policy => policy.Requirements.Add(new HasPermissionRequirement("View doors logs")));
+
+    options.AddPolicy(
+        "DoorEditor",
+        policy => policy.Requirements.Add(new HasPermissionRequirement("Edit doors")));
 });
 
 AddRepositories();

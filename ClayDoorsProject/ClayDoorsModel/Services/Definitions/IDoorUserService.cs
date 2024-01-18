@@ -4,6 +4,6 @@ namespace ClayDoorsModel.Services.Definitions
 {
     public interface IDoorUserService
     {
-        IDoorUser GetUser(string username);
+        IDoorUser? GetUser(string username);
     }
 }

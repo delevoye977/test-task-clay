@@ -3,8 +3,7 @@ using Microsoft.Extensions.Logging;
 using ClayDoorsController.Reponses;
 using Microsoft.AspNetCore.Authorization;
 using ClayDoorsModel.Services.Definitions;
-using Microsoft.AspNetCore.Mvc.Filters;
-using System.Security.Claims;
+using ClayDoorsController.Requests;
 
 namespace ClayDoorsProject.Controllers
 {
@@ -34,7 +33,7 @@ namespace ClayDoorsProject.Controllers
         [HttpGet]
         public async Task<IEnumerable<DoorResponseDto>> GetAllDoors()
         {
-            return (await doorsService.GetDoors())
+            return (await doorsService.GetAll())
                 .Select(d => new DoorResponseDto(d));
         }
 
@@ -55,13 +54,46 @@ namespace ClayDoorsProject.Controllers
             {
                 case ClayDoorsModel.Models.DoorUnlockResult.UserNotFound:
                 case ClayDoorsModel.Models.DoorUnlockResult.Unauthorized:
-                    return Unauthorized(resultResponse);
+                    return Forbid();
                 case ClayDoorsModel.Models.DoorUnlockResult.DoorNotFound:
                     return NotFound(resultResponse);
                 case ClayDoorsModel.Models.DoorUnlockResult.Success:
                     return Ok(resultResponse);
                 default: return BadRequest(resultResponse);
             }
+        }
+
+        //[Authorize(Policy = "DoorEditor")]
+        //[HttpPost]
+        //public async Task<ActionResult<DoorResponseDto>> CreateDoor(
+        //    [FromBody] DoorCreateRequestDto doorToCreate)
+        //{
+        //    var created = await doorsService.CreateDoor(
+        //        doorToCreate.Location, doorToCreate.Description);
+        //
+        //    return Created($"{RouteData}/{created.Id}", new DoorResponseDto(created));
+        //}
+
+        //[Authorize(Policy = "DoorEditor")]
+        //[HttpPut("{doorId}")]
+        //public async Task<ActionResult> UpdateDoor(
+        //    [FromRoute] int doorId,
+        //    [FromBody] DoorUpdateRequestDto doorToUpdate)
+        //{
+        //    var updated = doorsService.Update();
+        //
+        //    return Ok(new DoorResponseDto(updated));
+        //}
+
+        [Authorize(Policy = "DoorEditor")]
+        [HttpDelete("{doorId}")]
+        public async Task<ActionResult> DeleteDoor(
+            [FromRoute] int doorId)
+        {
+            var result = await doorsService.Delete(doorId);
+            if (!result)
+                return NotFound(doorId);
+            return NoContent();
         }
 
         /// <summary>

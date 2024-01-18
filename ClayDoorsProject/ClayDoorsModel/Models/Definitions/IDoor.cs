@@ -3,10 +3,8 @@
     /// <summary>
     /// Describes a door.
     /// </summary>
-    public interface IDoor
+    public interface IDoor : IModel<int>
     {
-        public int Id { get; }
-
         public string Location { get; }
 
         public string Description { get; }

@@ -6,14 +6,8 @@ namespace ClayDoorsModel.Services.Definitions
     /// <summary>
     /// Service for the read actions for doors.
     /// </summary>
-    public interface IDoorsService
+    public interface IDoorsService : ICRUDService<IDoor, int>
     {
-        /// <summary>
-        /// Gets the list of doors.
-        /// </summary>
-        /// <returns>The list of all doors.</returns>
-        Task<IEnumerable<IDoor>> GetDoors();
-
         /// <summary>
         /// Get the door unlock logs between the given times.
         /// </summary>

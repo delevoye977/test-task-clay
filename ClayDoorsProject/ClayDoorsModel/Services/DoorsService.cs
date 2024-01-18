@@ -1,10 +1,11 @@
 ﻿using ClayDoorsModel.Models;
 using ClayDoorsModel.Models.Definitions;
 using ClayDoorsModel.Services.Definitions;
+using ClayDoorsModel.Services.Generic;
 
 namespace ClayDoorsModel.Services
 {
-    public class DoorsService : IDoorsService
+    public class DoorsService : GenericCRUDService<IDoor, int>, IDoorsService
     {
         private readonly IDoorsRepository doorsRepository;
         private readonly IDoorUserService doorUserService;
@@ -12,14 +13,10 @@ namespace ClayDoorsModel.Services
         public DoorsService(
             IDoorsRepository doorsRepository,
             IDoorUserService doorUserService)
+            : base(doorsRepository)
         {
             this.doorsRepository = doorsRepository;
             this.doorUserService = doorUserService;
-        }
-
-        public async Task<IEnumerable<IDoor>> GetDoors() //Wishing covariant return types makes it to C# soon
-        {
-            return await doorsRepository.GetAllDoors();
         }
 
         public IEnumerable<IDoorUnlockLog> GetDoorUnlockLogs(DateTime? fromDate, DateTime? toDate, string? userToSearch)
@@ -30,7 +27,7 @@ namespace ClayDoorsModel.Services
             return doorsRepository.GetLogs(fromDate, toDate, userToSearch);
         }
 
-        public Task<DoorUnlockResult> UnlockDoor(int doorId, string username)
+        public async Task<DoorUnlockResult> UnlockDoor(int doorId, string username)
         {
             DoorUnlockResult result;
 
@@ -44,7 +41,7 @@ namespace ClayDoorsModel.Services
                     result = DoorUnlockResult.UserNotFound;
                 else
                 {
-                    var door = doorsRepository.GetDoor(doorId);
+                    var door = await doorsRepository.Get(doorId);
                     if (door == null) result = DoorUnlockResult.DoorNotFound;
                     else if (!door.CanBeUnlockedBy(user)) result = DoorUnlockResult.Unauthorized;
                     else
@@ -59,7 +56,7 @@ namespace ClayDoorsModel.Services
             
             this.doorsRepository.LogUnlock(new DoorUnlockLog(DateTime.UtcNow, result, doorId, username));
 
-            return Task.FromResult(result);
+            return result;
         }
     }
 }

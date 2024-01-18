@@ -1,4 +1,5 @@
 ﻿using ClayDoorsModel.Services.Definitions;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -54,7 +55,7 @@ namespace ClayDoorsController.Middlewares
 
             if (context.Resource is HttpContext httpContext)
             {
-                httpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                httpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                 httpContext.Response.ContentType = "application/json";
 
                 var response = new
@@ -64,6 +65,8 @@ namespace ClayDoorsController.Middlewares
 
                 var json = JsonSerializer.Serialize(response);
                 await httpContext.Response.WriteAsync(json);
+
+                await httpContext.ForbidAsync();
             }
         }
     }
