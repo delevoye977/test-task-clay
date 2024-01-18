@@ -64,10 +64,17 @@ namespace ClayDoorsProject.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets the logs at the given dates by the given user.
+        /// </summary>
+        /// <param name="fromDate">Date to start retrieving the logs.</param>
+        /// <param name="toDate">Date for the end of the logs.</param>
+        /// <param name="userToSearch">User to retrieve the logs from.</param>
+        /// <returns>The list of logs.</returns>
         [Authorize(Policy = "CanViewDoorLogs")]
         [HttpGet("/logs")]
         public async Task<ActionResult<DoorUnlockLogsResponseDto>> GetLogs(
-            [FromQuery(Name = "from")] DateTime? fromDate,
+            [FromQuery(Name = "from")] DateTime? fromDate, // Format is like 2024-01-16T01:00:00.000Z
             [FromQuery(Name = "to")] DateTime? toDate,
             [FromQuery(Name = "user")] string? userToSearch)
         {

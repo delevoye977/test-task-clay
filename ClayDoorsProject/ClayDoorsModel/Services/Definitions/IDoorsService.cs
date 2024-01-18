@@ -18,7 +18,7 @@ namespace ClayDoorsModel.Services.Definitions
         /// Get the door unlock logs between the given times.
         /// </summary>
         /// <param name="fromDate">Begining date to retrieve the logs. If missing, uses DateTime.MinValue.</param>
-        /// <param name="toDate">End date to retrieve the logs. If missing, uses the current date.</param>
+        /// <param name="toDate">End date to retrieve the logs. If missing, uses DateTime.MaxValue.</param>
         /// <param name="userToSearch">Username to search. If missing, searches for all.</param>
         /// <returns>The logs between the given dates.</returns>
         IEnumerable<IDoorUnlockLog> GetDoorUnlockLogs(DateTime? fromDate, DateTime? toDate, string? userToSearch);

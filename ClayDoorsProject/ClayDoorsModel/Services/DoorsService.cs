@@ -25,7 +25,7 @@ namespace ClayDoorsModel.Services
         public IEnumerable<IDoorUnlockLog> GetDoorUnlockLogs(DateTime? fromDate, DateTime? toDate, string? userToSearch)
         {
             if (fromDate == null) fromDate = DateTime.MinValue;
-            if (toDate == null) toDate = DateTime.UtcNow;
+            if (toDate == null) toDate = DateTime.MaxValue;
 
             return doorsRepository.GetLogs(fromDate, toDate, userToSearch);
         }
