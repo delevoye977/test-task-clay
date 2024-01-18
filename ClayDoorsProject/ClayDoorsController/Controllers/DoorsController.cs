@@ -12,7 +12,7 @@ namespace ClayDoorsProject.Controllers
     /// Controller for the doors.
     /// </summary>
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/doors")]
     [ApiController]
     public class DoorsController : ControllerBase
     {
@@ -43,7 +43,7 @@ namespace ClayDoorsProject.Controllers
         /// </summary>
         /// <param name="doorId">Id of the door to unlock.</param>
         /// <returns>If the unlock operation is a success.</returns>
-        [HttpPost("/{doorId}/unlock")]
+        [HttpPost("{doorId}/unlock")]
         public async Task<ActionResult<DoorUnlockResponseDto>> UnlockDoor([FromRoute] int doorId)
         {
             var username = User.Identity?.Name;
@@ -72,7 +72,7 @@ namespace ClayDoorsProject.Controllers
         /// <param name="userToSearch">User to retrieve the logs from.</param>
         /// <returns>The list of logs.</returns>
         [Authorize(Policy = "CanViewDoorLogs")]
-        [HttpGet("/logs")]
+        [HttpGet("logs")]
         public async Task<ActionResult<DoorUnlockLogsResponseDto>> GetLogs(
             [FromQuery(Name = "from")] DateTime? fromDate, // Format is like 2024-01-16T01:00:00.000Z
             [FromQuery(Name = "to")] DateTime? toDate,

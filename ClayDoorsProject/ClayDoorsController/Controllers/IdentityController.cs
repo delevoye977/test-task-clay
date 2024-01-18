@@ -13,7 +13,7 @@ namespace ClayDoorsController.Controllers
     /// <summary>
     /// Controller to manage identity.
     /// </summary>
-    [Route("[controller]")]
+    [Route("api/identity")]
     [ApiController]
     public class IdentityController : ControllerBase
     {
